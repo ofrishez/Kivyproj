@@ -1,6 +1,4 @@
-
-
-<FL>:
+<FL>
     canvas.before:
         Color:
             rgba: 1, 1, 1, 1
@@ -36,6 +34,42 @@
         text:"Blocked ads:" + str(root.proxy_server.get_blocked_ads())
         font_size: 30
         pos_hint: {"y":-0.35}
+
+<SettingsGrid>
+    GridLayout:
+        cols:1
+        size: root.width, root.height
+
+        GridLayout:
+            cols:5
+
+            Label:
+                text: "Ad filtering: "
+
+            Switch:
+                on_touch_down: root.ads_active = True
+            Label:
+                text: "Malware filtering: "
+
+            Switch:
+                on_touch_down: root.malware_active = True
+
+        Button:
+            text:"Go Back"
+            on_release:
+                root.screen_manager.transition.direction = 'right'
+                root.screen_manager.current = "main"
+
+
+<MainScreen>
+    FL:
+
+<SettingsScreen>
+    SettingsGrid:
+
+
+
+
 
 
 
