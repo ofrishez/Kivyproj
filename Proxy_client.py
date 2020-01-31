@@ -17,7 +17,7 @@ def main():
     else:
         malware = False
     proxy_server = Serverlib.Server(logging=True, malware_block=malware, ad_filtering=ads)
-    threading.Thread(target=proxy_server.start_server).start()
+    threading.Thread(target=proxy_server.start_server, daemon=True).start()
     proxy_server.config_proxy_windows()
     while 1:
         x= input()

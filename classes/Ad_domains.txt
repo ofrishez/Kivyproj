@@ -18823,6 +18823,7 @@ ws48.crypto-loot.com
 ws49.crypto-loot.com
 ws50.crypto-loot.com
 ws.addthis.com
+ws.tapjoyads.com
 ws-ea.amazon-adsystem.com
 ws-na.amazon-adsystem.com
 wss-gw-1.hitbox.com
@@ -21162,5 +21163,6 @@ googlesyndication
 \Wads\W
 ^ad\W
 ^ads\W
+ads\.
 applovin
 doubleclick

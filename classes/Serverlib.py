@@ -59,15 +59,19 @@ class Server:
         while True:
             try:
                 client_socket, client_address = server_socket.accept()  # accept new connection
-                self.client_list.append(client_socket)
-                index = len(self.client_list) - 1  # index of new socket in client list
-                if self.logging:
-                    print('New connection received with ip address - ' + client_address[0] + '\n')
+            except:
+                self.shutdown()
+                break
+
+            self.client_list.append(client_socket)
+            index = len(self.client_list) - 1  # index of new socket in client list
+            if self.logging:
+                print('New connection received with ip address - ' + client_address[0] + '\n')
+            try:
                 threading.Thread(name="client- " + client_address[0], target=self.__connection_handler,
                                  args=(index,), daemon=True).start()  # start a thread to handle new connection
-            except:
-                print('server socket closed')
-                break
+            except Exception as e:
+                print(e)
 
     def __connection_handler(self, index):
         """
