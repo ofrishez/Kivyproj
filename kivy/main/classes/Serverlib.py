@@ -216,7 +216,7 @@ class Server:
         except ImportError:
             'Windows registry could not be imported'
             return
-        key = winreg.OpenKeyEx \
+        key = winreg.OpenKeyEx\
             (winreg.HKEY_CURRENT_USER, r"Software\Microsoft\Windows\CurrentVersion\Internet Settings", 0,
              winreg.KEY_WRITE)
         if set_active:
@@ -293,26 +293,9 @@ class Server:
                         self.database["porn"][line[0].lower()].add(line)
             porn_domains_file.close()
         if "custome" in self.blocks:
-            try:
-                custome_domains_file = open(files_dir + r"\custome.txt", 'r')
-            except:
-                print("cant open porn domains file ")
-                return
             self.database["custome"] = {c: set() for c in
                                      ascii_lowercase + "".join([str(i) for i in range(0, 10, 1)])}
-            data = custome_domains_file.read().split("\n")
-            if not data:
-                print("list is empty, please register customized values to custome.txt file")
-                custome_domains_file.close()
-                return
-            for line in data:
-                if line != "":
-                    try:
-                        self.database["custome"][line[0].lower()].add(line)
-                    except KeyError:
-                        self.database["custome"][line[0].lower()] = set()
-                        self.database["custome"][line[0].lower()].add(line)
-            custome_domains_file.close()
+            return
 
     def is_ad_request(self, domain):
         """
@@ -413,7 +396,7 @@ class Server:
         self.database["custome"] = {c: set() for c in
                                     ascii_lowercase + "".join([str(i) for i in range(0, 10, 1)])}
         if not lst:
-            print("list is empty, please register customized values to custome.txt file")
+            print("list is empty.")
             return
         for line in lst:
             if line != "":
@@ -422,7 +405,6 @@ class Server:
                 except KeyError:
                     self.database["custome"][line[0].lower()] = set()
                     self.database["custome"][line[0].lower()].add(line)
-
 
 
 def parse_url(url):
